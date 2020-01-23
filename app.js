@@ -2,7 +2,8 @@ const express = require("express"),
 	  request = require("request"),
 	  bodyParser = require("body-parser"),
 	  mongoose = require("mongoose"),
-	  app = express();
+	  app = express(),
+      Campground = require("./models/campground");
 
 // TODO: Watch https://www.youtube.com/watch?v=NHHh0sj1uKY to update
 // from bootstrap 3.3 to 4
@@ -15,14 +16,6 @@ mongoose.set("useUnifiedTopology", true);
 mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
-
-// Schema
-var campgroundSchema = new mongoose.Schema({
-	name: String,
-	image: String,
-	description: String,
-});
-var Campground = mongoose.model("Campground", campgroundSchema);
 
 
 app.get("/", function(req, res) {
